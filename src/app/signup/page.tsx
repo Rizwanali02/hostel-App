@@ -1,7 +1,7 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react'
 
-export default function LoginPage() {
+const SignupPage = () => {
   return (
     <div className="flex flex-wrap overflow-hidden gap-5 w-full py-10 bg-gradient-to-l from-slate-50 to-green-100">
       {/* Left Side - Image & Illustrations */}
@@ -18,13 +18,27 @@ export default function LoginPage() {
       {/* Right Side - Login Form */}
       <div className="w-full md:w-[35%] lg:w-[30%] p-6 md:p-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-          Log in
+          Register Now
         </h1>
         <p className="text-gray-500 mb-6">
-          Welcome back! Please enter your details.
+          Welcome ! Please enter your details.
         </p>
 
         {/* Email Input */}
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="Name"
+          >
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
         <div className="mb-4">
           <label
             className="block text-gray-700 font-medium mb-2"
@@ -36,6 +50,34 @@ export default function LoginPage() {
             type="email"
             id="email"
             placeholder="Enter your email or phone"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="Mobile Number"
+          >
+            Mobile Number
+          </label>
+          <input
+            type="number"
+            id="number"
+            placeholder="Enter your phone"
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 font-medium mb-2"
+            htmlFor="Age"
+          >
+           Age
+          </label>
+          <input
+            type="number"
+            id="age"
+            placeholder="Enter your age"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
           />
         </div>
@@ -65,7 +107,7 @@ export default function LoginPage() {
 
         {/* Login Button */}
         <button className="w-full bg-[#3E937F] text-white py-2 rounded-lg hover:bg-[#3a8976] transition">
-          Log in
+          Sign up
         </button>
 
         {/* Divider */}
@@ -87,12 +129,14 @@ export default function LoginPage() {
 
         {/* Sign Up Link */}
         <p className="mt-6 text-sm text-center text-gray-500">
-          Don&apos;t have an account?{" "}
-          <Link href="signup" className="text-yellow-500 hover:underline">
-            Sign up
+          Already have an account?{" "}
+          <Link href="login" className="text-yellow-500 hover:underline">
+            Sign in
           </Link>
         </p>
       </div>
     </div>
-  );
+  )
 }
+
+export default SignupPage;

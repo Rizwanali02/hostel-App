@@ -5,7 +5,7 @@ import Reviews from "./components/Home/Reviews";
 
 export default function Home() {
   return (
-    <div className=" bg-gradient-to-l from-green-100 to-custom-landing-page">
+    <div className=" bg-gradient-to-l from-slate-50 to-green-100">
      <LandingPage/>
      <LandingBottomPage/>
      <Reviews/>

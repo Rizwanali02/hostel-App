@@ -1,20 +1,27 @@
-"use client"
-import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation';
-import React from 'react'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import React from "react";
 
 const Navbar = () => {
-  const router = useRouter(); 
-
-  const handleLoginClick = () => {
-    router.push('/login'); 
-  };
   return (
-    <div className="flex justify-between items-center px-4 py-2 bg-gradient-to-r from-green-300 to-white">
-      <span className="text-lg font-bold" onClick={()=>router.push('/')}>LOGO</span>
-      <Button onClick={handleLoginClick} className="bg-green-700 text-white hover:bg-green-600" >Log In</Button>
+    <div className="flex justify-between items-center px-4 py-2 bg-gradient-to-l from-slate-50 to-green-100">
+      <Link href={"/"} className="text-lg font-bold">
+        LOGO
+      </Link>
+      <div className="flex gap-4">
+        <Link href={"/"}>
+          <Button variant="outline" className="hover:bg-[#3E937F] hover:text-white">
+            List your property
+          </Button>
+        </Link>
+        <Link href={"/login"}>
+          <Button className="bg-[#3E937F] hover:bg-[#2e6f60]">
+            Log In
+          </Button>
+        </Link>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
