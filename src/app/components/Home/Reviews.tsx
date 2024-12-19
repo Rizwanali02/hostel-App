@@ -73,14 +73,14 @@ const Reviews = () => {
       </h2>
 
       {/* Loop through reviews and display them */}
-      <div className="flex gap-5 flex-wrap justify-center">
+      <div className="flex gap-5 overflow-x-auto scrollbar-hidden pb-7">
         {reviews.map((review) => (
-          <div key={review.id}>
+          <div key={review.id} className="shrink-0">
             <div
               className="reviewBackgrounfColor relative bg-cover bg-center rounded-[40px] p-5 text-black min-h-[200px] max-h-[250px] w-[350px] sm:w-[400px] lg:w-[450px] xl:w-[500px]"
-            //   style={{
-            //     backgroundImage: `url(${review.backgroundImage})`,
-            //   }}
+              //   style={{
+              //     backgroundImage: `url(${review.backgroundImage})`,
+              //   }}
             >
               {/* Content on the card */}
               <div className="relative z-10">
@@ -106,21 +106,21 @@ const Reviews = () => {
               </div>
             </div>
             <div className="flex justify-around mt-[-2px]">
-            <span className="">
-              <svg
-                width="31"
-                height="39"
-                viewBox="0 0 31 39"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.5 39L30.6554 0.75H0.344556L15.5 39Z"
-                  fill="#C5F9EC"
-                />
-              </svg>
-            </span>
-            <span></span>
+              <span className="">
+                <svg
+                  width="31"
+                  height="39"
+                  viewBox="0 0 31 39"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 39L30.6554 0.75H0.344556L15.5 39Z"
+                    fill="#C5F9EC"
+                  />
+                </svg>
+              </span>
+              <span></span>
             </div>
             {/* User Info displayed outside the card */}
             <div className="sm:ml-[7rem] mt-1 flex items-center space-x-4">

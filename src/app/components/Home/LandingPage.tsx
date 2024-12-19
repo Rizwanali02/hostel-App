@@ -31,10 +31,10 @@ const LandingPage = () => {
           </div>
 
           {/* Right Section (Image) */}
-          <div className="w-full md:w-1/2 flex justify-center items-center md:block hidden">
+          <div className="w-full md:w-1/2 justify-center items-center md:block hidden">
             {/* Transparent Image */}
             <Image
-              src="/images/LandingPageImage.jpeg" 
+              src="/images/landing.png" 
               alt="Sleeping illustration"
               width={500}
               height={300}
