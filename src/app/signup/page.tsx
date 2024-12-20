@@ -3,7 +3,7 @@ import React from 'react'
 
 const SignupPage = () => {
   return (
-    <div className="flex flex-wrap overflow-hidden gap-5 w-full py-10 bg-gradient-to-l from-slate-50 to-green-100">
+    <div className="flex flex-wrap overflow-hidden gap-5 w-full md:py-10 bg-gradient-to-l from-slate-50 to-green-100">
       {/* Left Side - Image & Illustrations */}
       <div className="relative w-full md:w-[60%] bg-gradient-to-r from-[#DFFCF5] to-[#C5F9EC] flex items-center justify-center rounded-tr-[50px] rounded-br-[50px]">
         <div className="text-center">
@@ -98,13 +98,6 @@ const SignupPage = () => {
           />
         </div>
 
-        {/* Forgot Password */}
-        <div className="text-right mb-4">
-          <a href="#" className="text-sm text-yellow-500 hover:underline">
-            Forgot Password?
-          </a>
-        </div>
-
         {/* Login Button */}
         <button className="w-full bg-[#3E937F] text-white py-2 rounded-lg hover:bg-[#3a8976] transition">
           Sign up
@@ -131,7 +124,7 @@ const SignupPage = () => {
         <p className="mt-6 text-sm text-center text-gray-500">
           Already have an account?{" "}
           <Link href="login" className="text-yellow-500 hover:underline">
-            Sign in
+            Log in
           </Link>
         </p>
       </div>

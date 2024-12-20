@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const LandingBottomPage = () => {
@@ -6,7 +7,7 @@ const LandingBottomPage = () => {
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {/* Homes for Scholars Section */}
-          <div className="bg-gradient-to-r from-green-400 to-custom-landing-page h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
+          <Link href={'/listing'} className="bg-gradient-to-r from-[#5CD5B7] to-[#D8FFF5] h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
             <h2 className="text-lg sm:text-xl font-medium">
               Homes for Scholars
             </h2>
@@ -18,8 +19,8 @@ const LandingBottomPage = () => {
                 className="h-full w-full object-contain"
               />
             </div>
-          </div>
-          <div className="bg-gradient-to-r from-green-400 to-custom-landing-page h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
+          </Link>
+          <div className="bg-gradient-to-r from-[#5CD5B7] to-[#D8FFF5] h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
             <h2 className="text-lg sm:text-xl font-medium">
               Where Professionals
             </h2>
@@ -32,7 +33,7 @@ const LandingBottomPage = () => {
               />
             </div>
           </div>
-          <div className="bg-gradient-to-r from-green-400 to-custom-landing-page h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
+          <div className="bg-gradient-to-r from-[#5CD5B7] to-[#D8FFF5] h-48 sm:h-56 md:h-40 rounded-2xl p-4 flex flex-col justify-start relative">
             <h2 className="text-lg sm:text-xl font-medium">Managed</h2>
             <span className="text-sm sm:text-base font-medium">Apartments</span>
             <div className="absolute bottom-0 right-0 h-full w-1/2">
@@ -59,7 +60,7 @@ const LandingBottomPage = () => {
         <div className="flex gap-3">
           <div>
             <img
-              src="/images/hostelimage1.jpg"
+              src="/images/hostelimage1.png"
               alt="Image 1"
               className="w-[155px] h-[300px] object-cover rounded-lg"
             />
@@ -67,14 +68,14 @@ const LandingBottomPage = () => {
           <div className="flex flex-col gap-5">
             <div>
               <img
-                src="/images/hostelimage2.jpg"
+                src="/images/hostelimage2.png"
                 alt="Image 2"
                 className="w-[220px] h-[140px] object-cover rounded-lg"
               />
             </div>
             <div>
               <img
-                src="/images/hostelimage3.jpg"
+                src="/images/hostelimage3.png"
                 alt="Image 4"
                 className="w-[220px] h-[140px] object-cover rounded-lg"
               />

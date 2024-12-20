@@ -3,7 +3,7 @@ import React from "react";
 
 export default function LoginPage() {
   return (
-    <div className="flex flex-wrap overflow-hidden gap-5 w-full py-10 bg-gradient-to-l from-slate-50 to-green-100">
+    <div className="flex flex-wrap overflow-hidden gap-5 w-full md:py-10 bg-gradient-to-l from-slate-50 to-green-100">
       {/* Left Side - Image & Illustrations */}
       <div className="relative w-full md:w-[60%] bg-gradient-to-r from-[#DFFCF5] to-[#C5F9EC] flex items-center justify-center rounded-tr-[50px] rounded-br-[50px]">
         <div className="text-center">

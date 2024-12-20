@@ -3,9 +3,9 @@ import React from "react";
 
 const LandingPage = () => {
   return (
-    <div className="flex items-center justify-center h-screen ">
+    <div className="flex md:items-center p-4 justify-center md:h-screen ">
       {/* Main Container */}
-      <div className="w-11/12 max-w-6xl p-4 bg-gradient-to-l from-green-200 to-custom-landing-page rounded-2xl shadow-lg border-t border-b border-r">
+      <div className="md:w-11/12 max-w-6xl p-4 bg-gradient-to-r from-green-100 to-[#C5F9EC] rounded-2xl rounded-tr-[50px] rounded-br-[50px]">
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Left Section */}
           <div className="max-w-lg mb-8 md:mb-0">
@@ -22,9 +22,9 @@ const LandingPage = () => {
               <input
                 type="text"
                 placeholder="Search Home"
-                className="w-full px-4 py-3 focus:outline-none"
+                className="md:w-[550px] w-full px-4 py-3 focus:outline-none"
               />
-              <button className="px-6 py-3 text-white bg-green-700 hover:bg-green-600">
+              <button className="px-6 py-3 text-white bg-[#3E937F] hover:bg-[#347a69]">
                 Search Home
               </button>
             </div>
