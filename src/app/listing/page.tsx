@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { AiOutlineFilter } from "react-icons/ai"; // Filter Icon
 import { useState } from "react";
+import FilterSection from "../components/Filter/FilterSection";
 
 const ListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -22,145 +23,20 @@ const ListingPage = () => {
     <div className="bg-gradient-to-r from-[#ebf4f1] to-[#DFFCF5] min-h-screen p-6">
       <div className="container mx-auto grid grid-cols-12 gap-6">
         {/* Filters Section - Hidden on Mobile */}
-        <div
-          className={`col-span-12 md:col-span-3 bg-white rounded-lg shadow-md p-6 md:block ${
-            isFilterOpen ? "block" : "hidden"
-          } fixed inset-0 bg-white z-50 md:relative md:z-auto md:p-6`}
-        >
-          <h2 className="text-lg font-semibold mb-4">Filters</h2>
-          <button
-            className="absolute top-4 right-4 text-xl text-gray-600 md:hidden"
-            onClick={toggleFilterDrawer}
-          >
-            &times;
-          </button>
-
-          {/* Filter Content */}
-          <div>
-            {/* Search Location */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Popular Locations in Kota, India
-              </label>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300"
-              />
-              <div className="flex flex-wrap gap-2 mt-4">
-                {["Land Mark", "Dadabari", "Pratap Nagar", "City Palace"].map(
-                  (location) => (
-                    <Button
-                      key={location}
-                      variant="outline"
-                      className="text-sm"
-                    >
-                      {location}
-                    </Button>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Budget Slider */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Budget
-              </label>
-              <Slider
-                defaultValue={[5000]}
-                min={5000}
-                max={18000}
-                step={1000}
-                className="mt-2"
-              />
-              <div className="flex justify-between text-sm mt-2">
-                <span>₹5000</span>
-                <span>₹18,000</span>
-              </div>
-            </div>
-
-            {/* Gender Selection */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Gender
-              </label>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Gender" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="coed">Co-ed</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Amenities */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Amenities
-              </label>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300"
-              />
-              <div className="flex flex-wrap gap-2 mt-4">
-                {[
-                  "Storage",
-                  "Window Cooler",
-                  "Air Conditioning",
-                  "Balcony",
-                ].map((amenity) => (
-                  <Button key={amenity} variant="outline" className="text-sm">
-                    {amenity}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Occupancy */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Occupancy
-              </label>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300"
-              />
-              <div className="flex flex-wrap gap-2 mt-4">
-                {["Double", "Single Occupancy", "Triple Occupancy", "Dorm"].map(
-                  (occupancy) => (
-                    <Button
-                      key={occupancy}
-                      variant="outline"
-                      className="text-sm"
-                    >
-                      {occupancy}
-                    </Button>
-                  )
-                )}
-              </div>
-            </div>
-
-            <Button className="w-full mt-6 bg-[#3E937F] hover:bg-[#347b6b] text-white">
-              Search & Connect
-            </Button>
-          </div>
-        </div>
+        <FilterSection
+          isFilterOpen={isFilterOpen}
+          toggleFilterDrawer={toggleFilterDrawer}
+        />
 
         {/* Listings Section */}
         <div className="col-span-12 md:col-span-9">
-          <div className="flex justify-between items-center mb-6">
+          <div className="md:flex justify-between items-center mb-6">
             <div className="flex items-center space-x-2">
               <h2 className="text-2xl font-semibold">
-                381 Hostels and PGs in Delhi, India
+                381 Hostels and PGs in Kota, Rajasthan
               </h2>
             </div>
-            <div className="flex">
+            <div className="flex justify-between">
               {/* Filter Icon for Mobile */}
               <Button
                 variant="outline"
@@ -170,7 +46,7 @@ const ListingPage = () => {
                 <AiOutlineFilter />
               </Button>
               <Select>
-                <SelectTrigger className="w-[180px] min-w-[140px]">
+                <SelectTrigger className="w-[200px]">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -184,7 +60,7 @@ const ListingPage = () => {
 
           {/* Listings */}
           <div className="flex flex-col gap-6">
-            {[1, 2, 3, 4].map((_, index) => (
+            {[1, 2, 3, 4,5,6].map((_, index) => (
               <div
                 key={index}
                 className="flex flex-col p-3 sm:flex-row md:h-[250px] bg-white rounded-lg shadow-md overflow-hidden"
@@ -212,8 +88,8 @@ const ListingPage = () => {
                     </p>
 
                     {/* Ratings and Amenities */}
-                    <div className="flex flex-wrap items-center gap-2 mt-3 text-sm">
-                      <div className="flex items-center">
+                    <div className="flex flex-wrap flex-col gap-2 mt-3 text-sm">
+                      <div className="flex items-center gap-2">
                         <span className="flex items-center bg-[#F3F9FF] p-1">
                           <i className="ri-star-fill text-yellow-400">
                             <svg
@@ -228,22 +104,24 @@ const ListingPage = () => {
                           </i>
                           4.2
                         </span>
-                        <span>(1001 Ratings)</span>
+                        <span className="text-[#6D6D6D]">(1001 Ratings)</span>
                       </div>
-                      <div className="">
-                        <span className="text-green-500">Elevator</span>
-                        <span>
-                          <i className="fa-solid fa-wifi"></i> Free Wi-Fi
+                      <div className="flex gap-2">
+                        <span className="flex items-center gap-1">
+                          <i className="fa-regular fa-building"></i>Elevator
                         </span>
-                        <span>Geyser</span>
-                        <span>7 more</span>
+                        <span className="flex items-center gap-1">
+                          <i className="fa-solid fa-wifi"></i>Wi-Fi
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <i className="fa-solid fa-hot-tub-person"></i>Geyser
+                        </span>
+                        <span>+7 more</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Pricing and Buttons */}
-                  <div className="flex flex-col sm:flex-row justify-between items-center mt-4">
-                    {/* Pricing */}
+                  <div className="flex flex-col sm:flex-row justify-between items-center">
                     <div className="text-lg font-bold text-green-600">
                       ₹18,000{" "}
                       <span className="line-through text-gray-500">
@@ -251,7 +129,6 @@ const ListingPage = () => {
                       </span>
                     </div>
 
-                    {/* Buttons */}
                     <div className="flex sm:flex-col gap-2 mt-4 sm:mt-0">
                       <Button className="bg-[#3E937F] hover:bg-[#347b6b] text-white w-full sm:w-auto">
                         Book now
