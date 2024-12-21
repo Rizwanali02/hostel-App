@@ -5,7 +5,7 @@ import React from 'react'
 
 type FilterSectionProps = {
     isFilterOpen: boolean;
-    toggleFilterDrawer: () => any;
+    toggleFilterDrawer: () => void;
   }
 
 const FilterSection: React.FC<FilterSectionProps> = ({isFilterOpen,toggleFilterDrawer}) => {
