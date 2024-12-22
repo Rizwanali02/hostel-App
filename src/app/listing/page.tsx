@@ -10,14 +10,13 @@ import {
 import { AiOutlineFilter } from "react-icons/ai"; // Filter Icon
 import { useState } from "react";
 import FilterSection from "../components/Filter/FilterSection";
+import Link from "next/link";
 
 const ListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
   const toggleFilterDrawer = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-
   return (
     <div className="bg-gradient-to-r from-[#ebf4f1] to-[#DFFCF5] min-h-screen p-6">
       <div className="container mx-auto grid grid-cols-12 gap-6">
@@ -65,13 +64,13 @@ const ListingPage = () => {
                 className="flex flex-col p-3 sm:flex-row md:h-[250px] bg-white rounded-lg shadow-md overflow-hidden"
               >
                 {/* Image Section */}
-                <div className="w-full sm:w-1/3">
+                <Link href={`/listing/${index}`} className="w-full sm:w-1/3">
                   <img
                     src="/images/hostelimage2.png"
                     alt="Hostel"
                     className="object-cover w-full h-44 sm:h-full"
                   />
-                </div>
+                </Link>
 
                 {/* Content Section */}
                 <div className="flex flex-col justify-between w-full p-4 sm:w-2/3">
@@ -132,9 +131,11 @@ const ListingPage = () => {
                       <Button className="bg-[#3E937F] hover:bg-[#347b6b] text-white w-full sm:w-auto">
                         Book now
                       </Button>
+                      <Link href={`/listing/${index}`}>
                       <Button className="bg-[#3E937F] hover:bg-[#347b6b] w-full sm:w-auto">
                         Schedule a visit
                       </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>

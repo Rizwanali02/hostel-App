@@ -9,13 +9,13 @@ import Image from "next/image";
 
 const ImageSlider = () => {
   const images = [
+      "/images/hostelimage3.png",
     "/images/hostelimage1.png",
     "/images/hostelimage2.png",
-    "/images/hostelimage3.png",
   ];
 
   return (
-    <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden mt-4">
+    <div className="relative w-full h-[350px] bg-gray-200 rounded-lg overflow-hidden mt-4">
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
