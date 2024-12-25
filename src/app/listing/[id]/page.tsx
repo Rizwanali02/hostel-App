@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
 import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
+import SimilarProduct from "@/app/components/SimiliarProduct/SimilarProduct";
 
 const SinglePage = () => {
-  
+
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#EEF6FF] to-[#FFFFFF] p-6">
@@ -31,7 +32,7 @@ const SinglePage = () => {
           </div>
 
           {/* Right Section */}
-          <ScheduleCard/>
+          <ScheduleCard />
         </div>
 
         {/* Main Content */}
@@ -110,6 +111,7 @@ const SinglePage = () => {
           </Tabs>
         </div>
       </div>
+      <SimilarProduct />
     </div>
   );
 };
