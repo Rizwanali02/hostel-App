@@ -1,15 +1,24 @@
 "use client";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
 import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
-import SimilarProduct from "@/app/components/SimiliarProduct/SimilarProduct";
+import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
 
 const SinglePage = () => {
+  const occupancyRef = useRef(null);
+  const amenitiesRef = useRef(null);
+  const detailsRef = useRef(null);
 
+  const scrollToSection = (ref:any) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#EEF6FF] to-[#FFFFFF] p-6">
+    <div className="min-h-screen bg-gradient-to-r from-[#EEF6FF] to-[#FFFFFF] p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-4">
@@ -21,94 +30,146 @@ const SinglePage = () => {
           {/* Left Section */}
           <div className="w-full lg:w-[60%]">
             <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold">Okazaki House</h1>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+                Okazaki House
+              </h1>
               <Button variant={"outline"}>Male</Button>
             </div>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm md:text-base">
               C-193 Near M Block Market Gate No 3, Greater Kailash-1, Delhi
             </p>
             {/* Image Slider */}
-            <ImageSlider />
+            <div className="mt-4">
+              <ImageSlider />
+            </div>
           </div>
 
           {/* Right Section */}
-          <ScheduleCard />
+            <ScheduleCard />
         </div>
 
         {/* Main Content */}
-        <div className="mt-8">
+        <div className="mt-8 lg:w-[60%]">
           {/* Pricing and Details */}
           <div className="mt-6">
-            <h2 className="text-2xl font-semibold">Starts from</h2>
-            <p className="text-xl text-gray-800 font-bold">₹18,000/mo*</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <h2 className="text-sm font-semibold text-[#00022CA8]">
+              Starts from
+            </h2>
+            <p className="text-3xl md:text-4xl font-bold">₹18,000/mo*</p>
+            <p className="text-xs md:text-sm text-gray-500 mt-1">
               *Denotes starting price inclusive of taxes. Final prices may vary
               based on room occupancy, customized services, and additional
               attributes.
             </p>
           </div>
 
-          {/* Tabs */}
-          <Tabs defaultValue="occupancy" className="mt-6">
-            <TabsList className="grid grid-cols-3 gap-2">
-              <TabsTrigger value="occupancy">Occupancy</TabsTrigger>
-              <TabsTrigger value="amenities">Amenities</TabsTrigger>
-              <TabsTrigger value="details">Details</TabsTrigger>
-            </TabsList>
+          {/* Navigation Buttons */}
+          <div className="flex gap-1 p-1 mt-5 w-full md:w-full lg:w-full border-2 border-gray-200 rounded-xl">
+            <Button
+              variant={"outline"}
+              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
+              onClick={() => scrollToSection(occupancyRef)}
+            >
+              Occupancy
+            </Button>
+            <Button
+              variant={"outline"}
+              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
+              onClick={() => scrollToSection(amenitiesRef)}
+            >
+              Amenities
+            </Button>
+            <Button
+              variant={"outline"}
+              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
+              onClick={() => scrollToSection(detailsRef)}
+            >
+              Details
+            </Button>
+          </div>
 
-            <TabsContent value="occupancy">
-              <h3 className="text-lg font-medium mt-4">
-                Available Occupancies
-              </h3>
-              <ul className="mt-2 space-y-2">
-                <li className="flex justify-between">
-                  <span>Single Occupancy</span>
-                  <span>₹24,000/mo*</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Double Occupancy</span>
-                  <span>₹18,000/mo*</span>
-                </li>
-              </ul>
-            </TabsContent>
+          {/* Sections */}
+          <div ref={occupancyRef} className="mt-10">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800">
+              Available Occupancies
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+              <div className="text-center">
+                <p className="text-sm font-semibold text-[#00022CA8]">
+                  Single Occupancy
+                </p>
+                <p className="text-2xl md:text-3xl font-semibold">
+                  ₹24,000/mo
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-semibold text-[#00022CA8]">
+                  Double Occupancy
+                </p>
+                <p className="text-2xl md:text-3xl font-semibold">
+                  ₹18,000/mo
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <TabsContent value="amenities">
-              <h3 className="text-lg font-medium mt-4">Amenities & Services</h3>
-              <ul className="mt-2 grid grid-cols-2 gap-4">
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>Air Conditioning</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>High-speed WiFi</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>Attached Washroom</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>Laundry Service</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>Spacious Cupboard</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-green-500 rounded-full"></span>
-                  <span>Hot Water Supply</span>
-                </li>
-              </ul>
-            </TabsContent>
-
-            <TabsContent value="details">
-              <h3 className="text-lg font-medium mt-4">Property Details</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Details content goes here...
-              </p>
-            </TabsContent>
-          </Tabs>
+          <div ref={amenitiesRef} className="mt-10">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800">
+              Amenities & Services
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">Air Conditioning</span>
+              </div>
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2 ">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">Attached Washroom</span>
+              </div>
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">Spacious Cupboard</span>
+              </div>
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">High-speed Wifi</span>
+              </div>
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">Laundry Service</span>
+              </div>
+              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
+                  ✔
+                </div>
+                <span className="text-gray-800 text-sm">Hot Water Supply</span>
+              </div>
+            </div>
+          </div>
+          <div ref={detailsRef} className="mt-10">
+            <h3 className="text-lg md:text-xl font-bold text-gray-800">
+              Details of Okazaki House
+            </h3>
+            <p className="text-gray-600 mt-4 text-sm md:text-base">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <button className="mt-4 text-blue-600 underline text-sm">
+              Read More
+            </button>
+          </div>
         </div>
       </div>
       <SimilarProduct />
