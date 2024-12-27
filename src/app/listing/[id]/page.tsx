@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
@@ -7,11 +7,13 @@ import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
 import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
 
 const SinglePage = () => {
+  const [activeSection, setActiveSection] = useState<string>("occupancy");
   const occupancyRef = useRef(null);
   const amenitiesRef = useRef(null);
   const detailsRef = useRef(null);
 
-  const scrollToSection = (ref:any) => {
+  const scrollToSection = (ref: any, section: string) => {
+    setActiveSection(section);
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -45,7 +47,7 @@ const SinglePage = () => {
           </div>
 
           {/* Right Section */}
-            <ScheduleCard />
+          <ScheduleCard />
         </div>
 
         {/* Main Content */}
@@ -65,27 +67,36 @@ const SinglePage = () => {
 
           {/* Navigation Buttons */}
           <div className="flex gap-1 p-1 mt-5 w-full md:w-full lg:w-full border-2 border-gray-200 rounded-xl">
-            <Button
-              variant={"outline"}
-              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
-              onClick={() => scrollToSection(occupancyRef)}
+            <span
+              className={`w-full text-center rounded-xl ${
+                activeSection === "occupancy"
+                  ? "bg-[#3E937F] text-white"
+                  : "hover:bg-[#3E937F] hover:text-white"
+              } cursor-pointer text-xs sm:text-xl py-1`}
+              onClick={() => scrollToSection(occupancyRef, "occupancy")}
             >
               Occupancy
-            </Button>
-            <Button
-              variant={"outline"}
-              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
-              onClick={() => scrollToSection(amenitiesRef)}
+            </span>
+            <span
+              className={`w-full text-center rounded-xl ${
+                activeSection === "amenities"
+                  ? "bg-[#3E937F] text-white"
+                  : "hover:bg-[#3E937F] hover:text-white"
+              } cursor-pointer text-xs sm:text-xl py-1`}
+              onClick={() => scrollToSection(amenitiesRef, "amenities")}
             >
               Amenities
-            </Button>
-            <Button
-              variant={"outline"}
-              className="w-full text-gray-700 border-gray-300 hover:bg-blue-100 text-xs sm:text-sm"
-              onClick={() => scrollToSection(detailsRef)}
+            </span>
+            <span
+              className={`w-full text-center rounded-xl ${
+                activeSection === "details"
+                  ? "bg-[#3E937F] text-white"
+                  : "hover:bg-[#3E937F] hover:text-white"
+              } cursor-pointer text-xs sm:text-xl py-1`}
+              onClick={() => scrollToSection(detailsRef, "details")}
             >
               Details
-            </Button>
+            </span>
           </div>
 
           {/* Sections */}
@@ -98,17 +109,13 @@ const SinglePage = () => {
                 <p className="text-sm font-semibold text-[#00022CA8]">
                   Single Occupancy
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold">
-                  ₹24,000/mo
-                </p>
+                <p className="text-2xl md:text-3xl font-semibold">₹24,000/mo</p>
               </div>
               <div className="text-center">
                 <p className="text-sm font-semibold text-[#00022CA8]">
                   Double Occupancy
                 </p>
-                <p className="text-2xl md:text-3xl font-semibold">
-                  ₹18,000/mo
-                </p>
+                <p className="text-2xl md:text-3xl font-semibold">₹18,000/mo</p>
               </div>
             </div>
           </div>
