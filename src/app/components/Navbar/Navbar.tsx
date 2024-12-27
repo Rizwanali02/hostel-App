@@ -9,7 +9,7 @@ const Navbar = () => {
         LOGO
       </Link>
       <div className="flex gap-4">
-        <Link href={"/"}>
+        <Link href={"/list-your-property"}>
           <Button variant="outline" className="hover:bg-[#3E937F] hover:text-white">
             List your property
           </Button>
