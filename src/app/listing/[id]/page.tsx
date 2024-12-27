@@ -12,7 +12,7 @@ const SinglePage = () => {
   const amenitiesRef = useRef(null);
   const detailsRef = useRef(null);
 
-  const scrollToSection = (ref: any, section: string) => {
+  const scrollToSection = (ref:  React.RefObject<HTMLDivElement>, section: string) => {
     setActiveSection(section);
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
