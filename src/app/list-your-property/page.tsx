@@ -23,8 +23,43 @@ const ListProperty = () => {
     console.log(formData); // Log the form values to the console
   };
   return (
-    <div className="bg-gradient-to-r from-[#D4FBF1] to-[#FFFFFF] py-10 px-6">
-      <div className="max-w-6xl mx-auto text-center">
+    <div className="bg-gradient-to-r from-[#D4FBF1] to-[#FFFFFF] py-10 px-1">
+      <div className="flex">
+        <div className="w-[40%] text-right hidden lg:block">
+          <div className="text-[50px] mt-28">
+            <div>
+              <strong>Elevate Your</strong>
+            </div>
+            <div>
+              <strong>Potential - P</strong>
+            </div>
+            <div>
+              <strong>Us for</strong>
+            </div>
+          </div>
+        </div>
+        <div className="w-full lg:w-[60%] flex justify-between mb-6 lg:mb-0 bg-gradient-to-r from-[#DFFCF5] to-[#C5F9EC] rounded-2xl rounded-tr-[50px] rounded-br-[50px]">
+          <div className="text-[50px] mt-28 hidden lg:block">
+            <div className="ml-1">
+              <strong>Propertys</strong>
+            </div>
+            <div>
+              <strong>artner with</strong>
+            </div>
+            <div className="ml-3">
+              <strong><span className="text-[#3E937F]">Success</span></strong>
+            </div>
+          </div>
+          <Image
+            alt="list property png"
+            src={"/images/listpropertyimage.png"}
+            height={450}
+            width={450}
+            className="max-w-full h-auto pr-4"
+          />
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto text-center p-3">
         {/* Heading */}
         <h2 className="text-3xl font-bold text-[#3E937F]">
           Why <span className="text-[#00022C]">Choose Us</span>
