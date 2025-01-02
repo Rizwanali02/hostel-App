@@ -66,13 +66,6 @@ const Reviews = () => {
   ];
 
   return (
-    <div className="py-16 px-6 sm:px-12 lg:px-3">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8">
-        Words from our <span className="text-green-400">Customers</span>
-        <span className="ml-2 text-2xl">✱</span>
-      </h2>
-
-      {/* Loop through reviews and display them */}
       <div className="flex gap-5 overflow-x-auto scrollbar-hidden pb-7">
         {reviews.map((review) => (
           <div key={review.id} className="shrink-0">
@@ -137,7 +130,6 @@ const Reviews = () => {
           </div>
         ))}
       </div>
-    </div>
   );
 };
 
