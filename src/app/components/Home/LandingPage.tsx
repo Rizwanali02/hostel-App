@@ -9,7 +9,7 @@ const LandingPage = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Left Section */}
           <div className="max-w-lg mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">
+            <h1 className="text-4xl md:text-8xl font-bold text-gray-800 leading-tight">
               FIND <br />
               YOUR <br />
               SECOND <br />
