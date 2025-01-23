@@ -8,12 +8,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { AiOutlineFilter } from "react-icons/ai"; // Filter Icon
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterSection from "../components/Filter/FilterSection";
 import Link from "next/link";
 
 const ListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://46.202.164.192:5002/api/v1/properties')
+      .then(response => response.json())
+      .then(data => {
+        setData(data.data.result);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, []);
   const toggleFilterDrawer = () => {
     setIsFilterOpen(!isFilterOpen);
   };
@@ -58,15 +73,15 @@ const ListingPage = () => {
 
           {/* Listings */}
           <div className="flex flex-col gap-6">
-            {[1, 2, 3, 4,5,6].map((_, index) => (
+            {data.length > 0 ? data.map((data:any,index) => (
               <div
-                key={index}
+                key={data.id}
                 className="flex flex-col p-3 sm:flex-row md:h-[250px] bg-white rounded-lg shadow-md overflow-hidden"
               >
                 {/* Image Section */}
                 <Link href={`/listing/${index}`} className="w-full sm:w-1/3">
                   <img
-                    src="/images/hostelimage2.png"
+                    src={data.thumbnail}
                     alt="Hostel"
                     className="object-cover w-full h-44 sm:h-full"
                   />
@@ -77,12 +92,10 @@ const ListingPage = () => {
                   <div>
                     {/* Title and Address */}
                     <div className="flex justify-between">
-                      <h3 className="text-lg font-semibold">Okazaki House</h3>
+                      <h3 className="text-lg font-semibold">{data.name}</h3>
                       <Button variant="outline">Male</Button>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1">
-                      C-193 Near M Block Market Gate No 3, Greater Kailash 1,
-                      Delhi
+                    <p className="text-sm text-gray-600 mt-1">{data.address}
                     </p>
 
                     {/* Ratings and Amenities */}
@@ -91,7 +104,7 @@ const ListingPage = () => {
                         <span className="flex items-center bg-[#F3F9FF] p-1">
                           <i className="ri-star-fill text-yellow-400">
                             <svg
-                              key={index}
+                              key={data.id}
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
                               viewBox="0 0 24 24"
@@ -140,7 +153,9 @@ const ListingPage = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )):(
+              <div>No properties found</div>
+            )}
           </div>
         </div>
       </div>

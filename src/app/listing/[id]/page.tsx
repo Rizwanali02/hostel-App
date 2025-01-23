@@ -1,30 +1,88 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
 import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
 import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
+import { useRouter } from "next/router";
 
-const SinglePage = () => {
+interface Props {
+  params: {
+    id: string;
+  }
+}
+interface Property {
+  id: string;
+  name: string;
+  address: string;
+  description: string;
+  region: string;
+  city: string;
+  country: string;
+  zipCode: string;
+  size: string;
+  type: string;
+  numberOfRooms: string;
+  furnishing: string;
+  legalDocumentAvailability: string;
+  thumbnail: string;
+  slug: string;
+  imageUrls: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [activeSection, setActiveSection] = useState<string>("occupancy");
-  const occupancyRef = useRef(null);
-  const amenitiesRef = useRef(null);
-  const detailsRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<Property | null>(null);
+  const [propertyId, setPropertyId] = useState<string | null>(null);
 
-  const scrollToSection = (ref:  React.RefObject<HTMLDivElement>, section: string) => {
+  const occupancyRef = useRef<HTMLDivElement | null>(null);
+  const amenitiesRef = useRef<HTMLDivElement | null>(null);
+  const detailsRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>, section: string) => {
     setActiveSection(section);
-    if (ref && ref.current) {
+    if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    // Unwrap params and set propertyId
+    const fetchParams = async () => {
+      const resolvedParams = await params; // Unwrap the promise
+      setPropertyId(resolvedParams.id);
+    };
+
+    fetchParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (!propertyId) return;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://46.202.164.192:5002/api/v1/properties");
+        const result = await response.json();
+        setData(result.data.result[Number(propertyId)]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [propertyId]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#EEF6FF] to-[#FFFFFF] p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-4">
-          <span>Logo</span> / <span>Kota</span> / <span>Okazaki House</span>
+          <span>Logo</span> / <span>{data?.city}</span> / <span>{data?.name}</span>
         </nav>
 
         {/* Page Header */}
@@ -33,16 +91,14 @@ const SinglePage = () => {
           <div className="w-full lg:w-[60%]">
             <div className="flex justify-between items-center">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
-                Okazaki House
+                {data?.name}
               </h1>
               <Button variant={"outline"}>Male</Button>
             </div>
-            <p className="text-gray-600 text-sm md:text-base">
-              C-193 Near M Block Market Gate No 3, Greater Kailash-1, Delhi
-            </p>
+            <p className="text-gray-600 text-sm md:text-base">{data?.address}</p>
             {/* Image Slider */}
             <div className="mt-4">
-              <ImageSlider />
+              <ImageSlider imageUrls={data?.imageUrls || []}/>
             </div>
           </div>
 
@@ -165,17 +221,12 @@ const SinglePage = () => {
           </div>
           <div ref={detailsRef} className="mt-10">
             <h3 className="text-lg md:text-xl font-bold text-gray-800">
-              Details of Okazaki House
+              Details of {data?.name}
             </h3>
-            <p className="text-gray-600 mt-4 text-sm md:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <button className="mt-4 text-blue-600 underline text-sm">
+            <p className="text-gray-600 mt-4 text-sm md:text-base">{data?.description}</p>
+            {/* <button className="mt-4 text-blue-600 underline text-sm">
               Read More
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
