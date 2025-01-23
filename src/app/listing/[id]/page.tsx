@@ -5,36 +5,16 @@ import { Button } from "@/components/ui/button";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
 import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
 import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
-import { useRouter } from "next/router";
+import { Property } from "@/app/interface/property.interface";
 
 interface Props {
   params: {
     id: string;
   }
 }
-interface Property {
-  id: string;
-  name: string;
-  address: string;
-  description: string;
-  region: string;
-  city: string;
-  country: string;
-  zipCode: string;
-  size: string;
-  type: string;
-  numberOfRooms: string;
-  furnishing: string;
-  legalDocumentAvailability: string;
-  thumbnail: string;
-  slug: string;
-  imageUrls: string[];
-  createdAt: string;
-  updatedAt: string;
-}
 const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [activeSection, setActiveSection] = useState<string>("occupancy");
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Property | null>(null);
   const [propertyId, setPropertyId] = useState<string | null>(null);
 
@@ -64,13 +44,14 @@ const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
 
     const fetchData = async () => {
       try {
+        // setLoading(true);
         const response = await fetch("http://46.202.164.192:5002/api/v1/properties");
         const result = await response.json();
         setData(result.data.result[Number(propertyId)]);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 

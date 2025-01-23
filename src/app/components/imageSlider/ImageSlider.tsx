@@ -10,14 +10,12 @@ interface ImageSliderProps {
   imageUrls: string[];
 }
 const ImageSlider = ({imageUrls}:ImageSliderProps) => {
-  const images = 
-  [
-      "/images/hostelimage3.png",
-    "/images/hostelimage1.png",
-    "/images/hostelimage2.png",
-  ];
-  console.log("hkhaskjdhasjkd--",imageUrls)
-
+  // const images = 
+  // [
+  //     "/images/hostelimage3.png",
+  //   "/images/hostelimage1.png",
+  //   "/images/hostelimage2.png",
+  // ];
   return (
     <div className="relative w-full h-[350px] bg-gray-200 rounded-lg overflow-hidden mt-4">
       <Swiper

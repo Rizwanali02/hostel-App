@@ -11,6 +11,7 @@ import { AiOutlineFilter } from "react-icons/ai"; // Filter Icon
 import { useEffect, useState } from "react";
 import FilterSection from "../components/Filter/FilterSection";
 import Link from "next/link";
+import { Property } from "../interface/property.interface";
 
 const ListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -73,13 +74,13 @@ const ListingPage = () => {
 
           {/* Listings */}
           <div className="flex flex-col gap-6">
-            {data.length > 0 ? data.map((data:any,index) => (
+            {data.length > 0 ? data.map((data:Property,index) => (
               <div
                 key={data.id}
                 className="flex flex-col p-3 sm:flex-row md:h-[250px] bg-white rounded-lg shadow-md overflow-hidden"
               >
                 {/* Image Section */}
-                <Link href={`/listing/${index}`} className="w-full sm:w-1/3">
+                <Link href={`/listing/${index}`}  prefetch={true} className="w-full sm:w-1/3">
                   <img
                     src={data.thumbnail}
                     alt="Hostel"
