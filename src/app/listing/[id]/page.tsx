@@ -7,11 +7,6 @@ import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
 import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
 import { Property } from "@/app/interface/property.interface";
 
-interface Props {
-  params: {
-    id: string;
-  }
-}
 const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [activeSection, setActiveSection] = useState<string>("occupancy");
   // const [loading, setLoading] = useState(true);

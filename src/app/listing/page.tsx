@@ -16,18 +16,15 @@ import { Property } from "../interface/property.interface";
 const ListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://46.202.164.192:5002/api/v1/properties')
       .then(response => response.json())
       .then(data => {
         setData(data.data.result);
-        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        setLoading(false);
       });
   }, []);
   const toggleFilterDrawer = () => {
