@@ -5,14 +5,18 @@ import { Button } from "@/components/ui/button";
 import ImageSlider from "@/app/components/imageSlider/ImageSlider";
 import ScheduleCard from "@/app/components/scheduleCard/ScheduleCard";
 import SimilarProduct from "@/app/components/SimilarProduct/SimilarProduct";
-import { Property } from "@/app/interface/property.interface";
+import { Amenity, Property } from "@/app/interface/property.interface";
 
+interface Image {
+  secureUrl: string;
+  id: string;
+}
 const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [activeSection, setActiveSection] = useState<string>("occupancy");
   // const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Property | null>(null);
   const [propertyId, setPropertyId] = useState<string | null>(null);
-
+  const [imageUrls, setImageUrls] = useState<Image[]>([]);
   const occupancyRef = useRef<HTMLDivElement | null>(null);
   const amenitiesRef = useRef<HTMLDivElement | null>(null);
   const detailsRef = useRef<HTMLDivElement | null>(null);
@@ -36,13 +40,30 @@ const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
 
   useEffect(() => {
     if (!propertyId) return;
-
     const fetchData = async () => {
       try {
         // setLoading(true);
-        const response = await fetch("http://46.202.164.192:5002/api/v1/properties");
+        const response = await fetch(`http://localhost:4000/api/v1/property/${propertyId}`);
         const result = await response.json();
-        setData(result.data.result[Number(propertyId)]);
+        console.log("response---",result)
+        setData(result.data);
+        const imagesArray: Image[] = [];
+        if (result.data.thumbnail) {
+          imagesArray.push({
+            id: result.data.thumbnail.id,
+            secureUrl: result.data.thumbnail.secureUrl
+          });
+        }
+  
+        if (result.data.images && Array.isArray(result.data.images)) {
+          const extractedImages = result.data.images.map((img:Image) => ({
+            id: img.id,
+            secureUrl: img.secureUrl
+          }));
+          imagesArray.push(...extractedImages);
+        }
+  
+        setImageUrls(imagesArray); // Set imageUrls state
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -74,7 +95,7 @@ const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="text-gray-600 text-sm md:text-base">{data?.address}</p>
             {/* Image Slider */}
             <div className="mt-4">
-              <ImageSlider imageUrls={data?.imageUrls || []}/>
+              <ImageSlider imageUrls={imageUrls || []}/>
             </div>
           </div>
 
@@ -157,42 +178,14 @@ const SinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
               Amenities & Services
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
+            {data?.amenities.map((amenity:Amenity) =>(
+              <div key={amenity.id} className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
                 <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
                   ✔
                 </div>
-                <span className="text-gray-800 text-sm">Air Conditioning</span>
+                <span className="text-gray-800 text-sm">{amenity.name}</span>
               </div>
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2 ">
-                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
-                  ✔
-                </div>
-                <span className="text-gray-800 text-sm">Attached Washroom</span>
-              </div>
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
-                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
-                  ✔
-                </div>
-                <span className="text-gray-800 text-sm">Spacious Cupboard</span>
-              </div>
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
-                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
-                  ✔
-                </div>
-                <span className="text-gray-800 text-sm">High-speed Wifi</span>
-              </div>
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
-                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
-                  ✔
-                </div>
-                <span className="text-gray-800 text-sm">Laundry Service</span>
-              </div>
-              <div className="flex items-center gap-4 border-2 border-gray-200 rounded-3xl p-2">
-                <div className="w-8 h-8 flex items-center justify-center bg-[#3E937F] rounded-full text-white">
-                  ✔
-                </div>
-                <span className="text-gray-800 text-sm">Hot Water Supply</span>
-              </div>
+            ))}
             </div>
           </div>
           <div ref={detailsRef} className="mt-10">

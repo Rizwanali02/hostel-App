@@ -18,7 +18,7 @@ const ListingPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://46.202.164.192:5002/api/v1/properties')
+    fetch('http://localhost:4000/api/v1/properties')
       .then(response => response.json())
       .then(data => {
         setData(data.data.result);
@@ -77,9 +77,9 @@ const ListingPage = () => {
                 className="flex flex-col p-3 sm:flex-row md:h-[250px] bg-white rounded-lg shadow-md overflow-hidden"
               >
                 {/* Image Section */}
-                <Link href={`/listing/${index}`}  prefetch={true} className="w-full sm:w-1/3">
+                <Link href={`/listing/${data.id}`}  prefetch={true} className="w-full sm:w-1/3">
                   <img
-                    src={data.thumbnail}
+                    src={data.thumbnail.secureUrl}
                     alt="Hostel"
                     className="object-cover w-full h-44 sm:h-full"
                   />

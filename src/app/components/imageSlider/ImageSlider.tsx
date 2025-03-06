@@ -7,9 +7,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 interface ImageSliderProps {
-  imageUrls: string[];
+  imageUrls: { secureUrl: string; id:string; }[];
 }
 const ImageSlider = ({imageUrls}:ImageSliderProps) => {
+  console.log('imageUrls--',imageUrls)
   // const images = 
   // [
   //     "/images/hostelimage3.png",
@@ -25,10 +26,10 @@ const ImageSlider = ({imageUrls}:ImageSliderProps) => {
         className="w-full h-full"
       >
         {imageUrls.map((image, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={image.id}>
             <div className="relative w-full h-full">
               <Image
-                src={image}
+                src={image.secureUrl}
                 alt={`Property ${index + 1}`}
                 fill
                 className="object-cover"
